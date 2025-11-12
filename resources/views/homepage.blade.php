@@ -1,4 +1,15 @@
 <x-base-layout>
-    <h1>Dit is de homepage</h1>
-    <p>nog niks mee te doen, maar het is een begin</p>
+
+    <div class="wrapper">
+        <img src="{{ asset('img/test123.png') }}" alt="###">
+
+        <nav>
+            <a href="###">Toernooien</a>
+            <a href="{{ route('login') }}">Aanmelden</a>
+            <a href="###">Contact</a>
+        </nav>
+
+        <img src="{{ asset('img/test123.png') }}" alt="###">
+    </div>
+
 </x-base-layout>

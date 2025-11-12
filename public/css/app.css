@@ -1,0 +1,124 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+    --main-color: plum;
+    --secondary-color: white;
+    --hover-color: #dda0dd;
+}
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--main-color);
+    color: white;
+    align-items: flex-end;
+}
+
+.partial_footer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    text-align: flex-start;
+}
+
+.title_partial_footer {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.homepage_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.homepage_header img {
+    width: 50px;
+    height: auto;
+}
+
+.wrapper {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-weight: bold;
+}
+
+.wrapper nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper nav a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    padding: 10px;
+}
+.wrapper nav a:hover {
+    color: var(--hover-color);
+}
+
+.wrapper img {
+    width: 300px;
+    height: auto;
+}
+
+.h1-mid {
+    text-align: center;
+}
+
+.form-login label,
+.form-login input {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.form-login input {
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.form-login {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    min-width: fit-content;
+}
+
+.form-login button {
+    background-color: black;
+    width: 150px;
+    height: 40px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-login a {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}

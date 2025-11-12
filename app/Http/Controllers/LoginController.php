@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -25,9 +27,6 @@ class LoginController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
-        // Auto login the user
-        auth()->login($user);
 
         // Redirect to homepage (or dashboard)
         return redirect()->route('home')->with('success', 'Registratie succesvol!');
