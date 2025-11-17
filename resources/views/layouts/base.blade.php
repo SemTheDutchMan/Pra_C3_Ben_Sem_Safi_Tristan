@@ -12,7 +12,9 @@
     <header>
         <div class="homepage_header">
             <img src="{{ asset('img/icontest.png') }}" alt="###">
-            <h1>Stichting Paastoernooien</h1>
+            <nav>
+                <a href="{{ route('homepage') }}">Home</a>
+            </nav>
             <img src="{{ asset('img/icontest.png') }}" alt="###">
         </div>
     </header>
@@ -27,19 +29,16 @@
             <div class="title_partial_footer">
                 <p>Contact:</p>
             </div>
-            <p>Telefoon: #################</p>
+            <p>+31 06 12345678</p>
             <mailto:p> stichtingpaastoernooiboz@gmail.com</mailto:p>
-            <p>extra: #################</p>
         </div>
 
         <div class="partial_footer">
-            <div class="title_partial_footer">
-                <p>Media</p>
+            <div class="media_footer">
+                <a href="###"><img src="{{ asset('img/media_icons/facebook.png') }}" alt="Facebook"></a>
+                <a href="###"><img src="{{ asset('img/media_icons/instagram.png') }}" alt="Instagram"></a>
+                <a href="###"><img src="{{ asset('img/media_icons/twitter.png') }}" alt="Twitter"></a>
             </div>
-            <p>Facebook: #################</p>
-            <p>Instagram: #################</p>
-            <p>Twitter: #################</p>
-            <p>tiktok: #################</p>
         </div>
     </footer>
 </body>

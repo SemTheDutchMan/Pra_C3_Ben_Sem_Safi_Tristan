@@ -6,7 +6,7 @@ use App\Http\Controllers\HomeController;
 
 route::get('/', function () {
     return view('homepage');
-});
+})->name('homepage');
 
 route::get('/login', function () {
     return view('login');
