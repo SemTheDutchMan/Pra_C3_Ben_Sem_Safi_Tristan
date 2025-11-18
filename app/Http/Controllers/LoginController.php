@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function create()
     {
-        return view('register'); // your blade file name
+        return view('login'); // your blade file name
     }
 
     public function store(Request $request)

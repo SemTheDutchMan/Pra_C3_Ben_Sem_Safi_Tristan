@@ -1,7 +1,5 @@
-<x-base-layout>
-
-<body>
-    <h1 class="h1-mid">Inloggen</h1>
+<x-base_layout>
+    <h1 class="H1">Inloggen</h1>
 
     <form class="form-login">
         <label for="email">Gebruikersnaam:</label>
@@ -15,6 +13,5 @@
             <a href="register">Registreren</a>
         </div>
     </form>
-</body>
 
-</x-base-layout>
+</x-base_layout>

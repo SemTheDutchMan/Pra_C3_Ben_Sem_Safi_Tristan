@@ -1,10 +1,11 @@
 <x-base-layout>
+    <h1 class="H1">Admin Paneel</h1>
 
-<h1>Beheerpagina</h1>
-
-   <a href="{{ route('tournaments') }}" class="nav-button">Tournaments</a>
-    <a href="{{ route('users') }}" class="nav-button">Users</a>
-
-
+    <div class="Nav-Admin">
+        <a href="{{ route('tournaments') }}" class="nav-button">Toernooien</a>
+    </div>
+    <div class="Nav-Admin">
+        <a href="{{ route('users') }}" class="nav-button">Gebruikers</a>
+    </div>
 
 </x-base-layout>
