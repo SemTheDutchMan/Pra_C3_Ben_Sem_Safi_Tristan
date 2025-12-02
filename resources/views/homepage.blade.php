@@ -4,7 +4,7 @@
         <img src="{{ asset('img/Logo.png') }}" alt="###">
 
         <nav>
-            <a href="###">Toernooien</a>
+            <a href="{{ route('tournaments') }}">Toernooien</a>
             <a href="{{ route('login') }}">Aanmelden</a>
             <a href="{{ route('contact.create') }}">Contact</a>
         </nav>

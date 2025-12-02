@@ -8,6 +8,11 @@ use App\Mail\ContactMail;
 
 class ContactController extends Controller
 {
+    public function tournaments()
+    {
+        return view('layouts.tournaments');
+    }
+
     // Toon het contactformulier
     public function create()
     {
