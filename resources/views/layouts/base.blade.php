@@ -13,7 +13,17 @@
         <div class="homepage_header">
             <img src="{{ asset('img/icontest.png') }}" alt="###">
             <nav>
+                @if(auth()->check() && auth()->user()->isAdmin == 1)
+
+                <div class="dropdown-content">
+                    <a href="{{ route('homepage') }}">Home</a>
+                    <a href="{{ route('profile.index') }}">Admin beheer</a>
+                </div>
+                @else
                 <a href="{{ route('homepage') }}">Home</a>
+                @endif
+
+
             </nav>
             <img src="{{ asset('img/icontest.png') }}" alt="###">
         </div>

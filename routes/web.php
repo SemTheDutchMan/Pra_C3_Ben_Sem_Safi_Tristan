@@ -8,7 +8,7 @@ Route::get('/', function () {
 })->name('homepage');
 
 
-Route::view('/admin', 'admin')->name('admin');
+Route::get('/admin', [ProfileController::class, 'index'])->middleware('auth')->name('profile.index');
 Route::view('/tournaments', 'tournaments')->name('tournaments');
 Route::view('/users', 'users')->name('users');
 
@@ -17,9 +17,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile1', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::get('/account/{id}', [ProfileController::class, 'show'])->name('profile.show');
+Route::patch('/account/{id}', [ProfileController::class, 'updateUser'])->middleware('auth')->name('profile.updateById');
+
+require __DIR__ . '/auth.php';

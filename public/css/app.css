@@ -269,3 +269,37 @@ a.nav-button {
     color: black;
     font-weight: bold;
 }
+
+.adminAccs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.nonAdminAccs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.edit_admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.form-group{
+    margin-bottom: 15px;
+}
+
+.from-group label{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}

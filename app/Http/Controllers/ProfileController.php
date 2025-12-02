@@ -8,9 +8,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
+
+    public function index()
+    {
+        $user = Auth::user();
+        $all = User::all();
+        return view('admin', compact('user', 'all'));
+    }
+
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('show_account', compact('user'));
+    }
     /**
      * Display the user's profile form.
      */
@@ -28,13 +42,35 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated());
 
+        // Toggle isAdmin based on checkbox presence (checked => 1, unchecked => 0)
+        $request->user()->isAdmin = $request->has('isAdmin') ? 1 : 0;
+
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit');
+    }
+
+    /**
+     * Update another user's profile (admin action).
+     */
+    public function updateUser(Request $request, $id): RedirectResponse
+    {
+        $auth = $request->user();
+        if (! $auth || $auth->isAdmin != 1) {
+            abort(403);
+        }
+
+        $user = User::findOrFail($id);
+
+        // only toggle isAdmin for now
+        $user->isAdmin = $request->has('isAdmin') ? 1 : 0;
+        $user->save();
+
+        return Redirect::route('profile.index')->with('status', 'user-updated');
     }
 
     /**
