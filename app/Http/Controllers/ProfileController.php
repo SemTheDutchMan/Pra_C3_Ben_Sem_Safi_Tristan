@@ -74,7 +74,7 @@ class ProfileController extends Controller
         $user->isAdmin = $request->has('isAdmin') ? 1 : 0;
         $user->save();
 
-        return Redirect::route('profile.index')->with('status', 'user-updated');
+        return Redirect::route('dashboard');
     }
 
     /**

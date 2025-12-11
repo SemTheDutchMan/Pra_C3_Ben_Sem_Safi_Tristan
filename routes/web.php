@@ -11,14 +11,6 @@ Route::get('/', function () {
     return view('homepage');
 })->name('homepage');
 
-route::get('/login', function () {
-    return view('login');
-});
-
-route::get('/register', function () {
-    return view('register');
-});
-
 
 Route::view('/admin', 'admin')->name('admin');
 Route::view('/rules', 'rules')->name('rules');
@@ -28,7 +20,7 @@ Route::get('/dashboard', [ProfileController::class, 'index'])
     ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile1', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

@@ -48,4 +48,11 @@ class ContactController extends Controller
     {
         return view('show_contact', compact('contact'));
     }
+
+    public function destroy(Contact $contact)
+    {
+        $contact->delete();
+
+        return Redirect::route('dashboard');
+    }
 }

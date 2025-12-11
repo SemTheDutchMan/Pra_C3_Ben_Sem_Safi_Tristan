@@ -4,5 +4,13 @@
         <p><strong>Email:</strong> {{ $contact->email }}</p>
         <p><strong>Bericht:</strong></p>
         <p>{{ $contact->message }}</p>
+
+        <form action="{{ route('contact.destroy', $contact->id) }}" method="POST" style="margin-top: 20px;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" style="background-color: #e3342f; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;">
+                Verwijder Bericht
+            </button>
+        </form>
     </div>
 </x-app-layout>

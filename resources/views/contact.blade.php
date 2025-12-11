@@ -33,7 +33,7 @@
 
             <!-- Bericht veld -->
             <div>
-                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Bericht</label>
+                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Bericht (max. 1000 tekens)</label>
                 <textarea id="message" name="message" rows="6" placeholder="Vul je bericht in"
                     class="w-full p-4 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all duration-300 resize-y"
                     required>{{ old('message') }}</textarea>
