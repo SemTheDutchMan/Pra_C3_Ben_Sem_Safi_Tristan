@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\http\Controllers\SchoolController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,5 +25,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/account/{id}', [ProfileController::class, 'show'])->name('profile.show');
 Route::patch('/account/{id}', [ProfileController::class, 'updateUser'])->middleware('auth')->name('profile.updateById');
+
+Route::resource('/school', SchoolController::class);
 
 require __DIR__ . '/auth.php';
