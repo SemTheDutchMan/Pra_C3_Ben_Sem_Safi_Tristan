@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
+use App\Models\School;
 
 class ProfileController extends Controller
 {
@@ -17,7 +18,8 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $all = User::all();
-        return view('admin', compact('user', 'all'));
+        $inschrijvingen = School::all();
+        return view('dashboard', compact('user', 'all', 'inschrijvingen'));
     }
 
     public function show($id)

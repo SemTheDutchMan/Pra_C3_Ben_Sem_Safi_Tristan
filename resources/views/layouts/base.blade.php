@@ -11,21 +11,11 @@
 <body>
     <header>
         <div class="homepage_header">
-            <img src="{{ asset('img/icontest.png') }}" alt="###">
+            <a href="{{ route('homepage') }}"><img src="{{ asset('img/home.png') }}" alt="homepage image"></a>
             <nav>
-                @if(auth()->check() && auth()->user()->isAdmin == 1)
-
-                <div class="dropdown-content">
-                    <a href="{{ route('homepage') }}">Home</a>
-                    <a href="{{ route('profile.index') }}">Admin beheer</a>
-                </div>
-                @else
-                <a href="{{ route('homepage') }}">Home</a>
-                @endif
-
-
+                <h2>Welkom bij Paastoernooi Boz!</h2>
             </nav>
-            <img src="{{ asset('img/icontest.png') }}" alt="###">
+            <a href="{{ route('login')}}"><img src="{{ @asset('img/icontest.png')}}" alt="###"></a>
         </div>
     </header>
 

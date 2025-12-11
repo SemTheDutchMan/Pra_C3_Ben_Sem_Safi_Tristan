@@ -210,8 +210,112 @@ label {
     margin-bottom: 0.5rem;
 }
 
+
 /* Ruimte tussen de formuliervelden */
 .space-y-6>*+* {
     margin-top: 1.5rem;
     /* Verhoogt de ruimte tussen velden */
+}
+
+.form-register input {
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.form-register {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    min-width: fit-content;
+}
+
+.form-register button {
+    background-color: black;
+    width: 150px;
+    height: 40px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-register a {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Style voor Admin */
+
+.Nav-Admin {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 100px;
+}
+
+a.nav-button {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.adminAccs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.nonAdminAccs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.inschrijvingen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.edit_admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.form-group{
+    margin-bottom: 15px;
+}
+
+.from-group label{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
 }

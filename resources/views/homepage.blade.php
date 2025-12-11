@@ -12,8 +12,7 @@
                         onclick="event.preventDefault(); this.closest('form').submit();">{{ __('Logout') }}</a>
                 </form>
             @else
-                <a href="{{ route('login') }}">inloggen</a>
-                <a href="{{ route('register') }}">Registreren</a>
+            <a href="{{ route('school.create') }}">Inschrijven</a>
             @endauth
             <a href="{{ route('contact.create') }}">Contact</a>
 

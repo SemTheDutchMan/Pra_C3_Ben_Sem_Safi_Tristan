@@ -1,4 +1,4 @@
-<x-base-layout>
+<x-app-layout>
 
     @php
     $auth = auth()->user();
@@ -24,4 +24,4 @@
         </form>
     </div>
 
-</x-base-layout>
+</x-app-layout>
