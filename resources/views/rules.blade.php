@@ -1,5 +1,6 @@
 <x-base-layout>
-    <main style="display: flex; justify-content: center; align-items: center; flex-direction: column;" class="tournaments-page">
+    
+    <main style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 25px;" class="tournaments-page">
 
         {{-- Hero / titel --}}
         <section class="tournaments-hero">
