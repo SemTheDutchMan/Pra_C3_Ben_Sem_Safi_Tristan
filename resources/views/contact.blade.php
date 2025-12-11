@@ -1,7 +1,7 @@
 <x-base-layout>
 
     <section class="mx-auto max-w-2xl px-6 py-12">
-        <h1 class="text-3xl font-semibold text-center mb-8">Contact</h1>
+        <h1 style="padding: 2rem; text-align: center;" class="text-3xl font-semibold text-center mb-8">Contact</h1>
 
         @if (session('status'))
             <div class="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
@@ -9,7 +9,8 @@
             </div>
         @endif
 
-        <form action="{{ route('contact.store') }}" method="POST" class="space-y-6">
+        <form style="    max-width: 600px;
+    margin: 0 auto; padding: 2rem; background-color: #fff; border-radius: 0.75rem; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);" action="{{ route('contact.store') }}" method="POST" class="space-y-6">
             @csrf
 
             <!-- Naam veld -->

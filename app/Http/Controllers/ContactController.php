@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
+use App\models\Contact;
+use Illuminate\Support\Facades\Redirect;
 
 class ContactController extends Controller
 {
@@ -29,13 +31,16 @@ class ContactController extends Controller
             'message' => 'required|string|max:1000',
         ]);
 
-        // Hier kun je bijvoorbeeld de gegevens opslaan in de database
-        // Contact::create($request->all());
+        contact::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message,
+        ]);
 
         // Verstuur een bevestigingsmail naar de beheerder (optioneel)
         // Mail::to('admin@example.com')->send(new ContactMail($request->all()));
 
         // Toon een bevestigingsbericht
-        return redirect()->back()->with('status', 'Je bericht is succesvol verstuurd!');
+       return Redirect::to('/')->with('status', 'Je bericht is succesvol verstuurd!');
     }
 }

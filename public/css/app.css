@@ -143,19 +143,6 @@ footer {
     text-decoration: none;
 }
 
-
-form {
-    max-width: 600px;
-    /* Beperk de breedte van het formulier */
-    margin: 0 auto;
-    /* Centreer het formulier op de pagina */
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 0.75rem;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    /* Subtiele schaduw rondom het formulier */
-}
-
 /* Naam, email, bericht velden */
 input,
 textarea {
