@@ -142,3 +142,76 @@ footer {
     text-align: center;
     text-decoration: none;
 }
+
+
+form {
+    max-width: 600px;
+    /* Beperk de breedte van het formulier */
+    margin: 0 auto;
+    /* Centreer het formulier op de pagina */
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    /* Subtiele schaduw rondom het formulier */
+}
+
+/* Naam, email, bericht velden */
+input,
+textarea {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+    /* Lichtgrijze rand */
+    font-size: 1rem;
+    color: #333;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    /* Ruimte onder de velden */
+}
+
+/* Focus effect voor de invoervelden */
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    /* Blauwe rand */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+    /* Blauw focus-effect */
+}
+
+/* Knop stijl */
+button {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #000;
+    /* Zwarte achtergrond */
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Knop hover effect */
+button:hover {
+    background-color: #374151;
+    /* Donkerder zwart/grijs */
+}
+
+/* Tekstlabels */
+label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    /* Donkergrijs */
+    margin-bottom: 0.5rem;
+}
+
+/* Ruimte tussen de formuliervelden */
+.space-y-6>*+* {
+    margin-top: 1.5rem;
+    /* Verhoogt de ruimte tussen velden */
+}

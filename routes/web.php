@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return view('homepage');
@@ -24,7 +25,8 @@ Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::view('/admin', 'admin')->name('admin');
 Route::view('/tournaments', 'tournaments')->name('tournaments');
 Route::view('/users', 'users')->name('users');
-
+Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
