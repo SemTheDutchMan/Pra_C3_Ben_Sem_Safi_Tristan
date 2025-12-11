@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
 use App\Models\School;
+use App\Models\Contact;
 
 class ProfileController extends Controller
 {
@@ -19,7 +20,8 @@ class ProfileController extends Controller
         $user = Auth::user();
         $all = User::all();
         $inschrijvingen = School::all();
-        return view('dashboard', compact('user', 'all', 'inschrijvingen'));
+        $contact = Contact::all();
+        return view('dashboard', compact('user', 'all', 'inschrijvingen', 'contact'));
     }
 
     public function show($id)

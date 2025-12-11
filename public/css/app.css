@@ -270,7 +270,6 @@ a.nav-button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px;
 }
 
 .nonAdminAccs {
@@ -278,7 +277,6 @@ a.nav-button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px;
 }
 
 .inschrijvingen {
@@ -286,7 +284,6 @@ a.nav-button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px;
 }
 
 .edit_admin {
@@ -305,4 +302,20 @@ a.nav-button {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+}
+
+.adminDashboard {
+    padding: 20px;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.adminDashboard h2 {
+    margin-bottom: 10px;
+}
+
+.adminDashboard a{
+    color: rgb(163, 18, 163)
 }

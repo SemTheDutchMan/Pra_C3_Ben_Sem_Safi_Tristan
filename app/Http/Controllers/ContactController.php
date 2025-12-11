@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
-use App\models\Contact;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Redirect;
 
 class ContactController extends Controller
@@ -15,32 +15,37 @@ class ContactController extends Controller
         return view('layouts.tournaments');
     }
 
-    // Toon het contactformulier
-    public function create()
+    public function index()
     {
-        return view('contact'); // Zorg ervoor dat je 'contact' view bestaat
+        return Redirect::route('contact.create');
     }
 
-    // Verwerk het contactformulier
+    public function create()
+    {
+        return view('contact');
+    }
+
     public function store(Request $request)
     {
-        // Validatie van de inkomende gegevens
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'message' => 'required|string|max:1000',
         ]);
 
-        contact::create([
+        Contact::create([
             'name' => $request->name,
             'email' => $request->email,
             'message' => $request->message,
         ]);
 
-        // Verstuur een bevestigingsmail naar de beheerder (optioneel)
         // Mail::to('admin@example.com')->send(new ContactMail($request->all()));
 
-        // Toon een bevestigingsbericht
-       return Redirect::to('/')->with('status', 'Je bericht is succesvol verstuurd!');
+        return Redirect::route('contact.create')->with('status', 'Je bericht is succesvol verstuurd!');
+    }
+
+    public function show(Contact $contact)
+    {
+        return view('show_contact', compact('contact'));
     }
 }

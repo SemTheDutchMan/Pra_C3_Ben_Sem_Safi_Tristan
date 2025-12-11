@@ -4,8 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\http\Controllers\SchoolController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
     return view('homepage');
@@ -18,19 +18,14 @@ route::get('/login', function () {
 route::get('/register', function () {
     return view('register');
 });
-use App\Http\Controllers\RegisterController;
 
-Route::get('/register', [RegisterController::class, 'create'])->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
-Route::get('/login', [LoginController::class, 'create'])->name('login');
+
 Route::view('/admin', 'admin')->name('admin');
-Route::view('/tournaments', 'tournaments')->name('tournaments');
+Route::view('/rules', 'rules')->name('rules');
 Route::view('/users', 'users')->name('users');
-Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [ProfileController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile1', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -42,5 +37,6 @@ Route::get('/account/{id}', [ProfileController::class, 'show'])->name('profile.s
 Route::patch('/account/{id}', [ProfileController::class, 'updateUser'])->middleware('auth')->name('profile.updateById');
 
 Route::resource('/school', SchoolController::class);
+Route::resource('/contact', ContactController::class);
 
 require __DIR__ . '/auth.php';
