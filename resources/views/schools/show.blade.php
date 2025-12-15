@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="p-6 text-gray-900 dark:text-gray-100">
+    <div class="p-6 text-gray-900">
         <h1>School Details</h1>
 
         <div class="mt-6 space-y-4">

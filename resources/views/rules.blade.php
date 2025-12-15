@@ -1,28 +1,26 @@
 <x-base-layout>
     
-    <main style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 25px;" class="tournaments-page">
+    <main class="tournaments-page">
 
         {{-- Hero / titel --}}
         <section class="tournaments-hero">
-            <h1>Regels</h1>
-            <p>
+            <h1>Toernooi Regels & Informatie</h1>
+            <p class="hero-description">
                 Stichting Paastoernooien organiseert ieder jaar voetbal- en lijnbaltoernooien
                 voor basisscholen en middelbare scholen in Bergen op Zoom en omgeving.
                 Op deze pagina vind je een overzicht van de opzet per toernooi, de leeftijden
                 en de belangrijkste spelafspraken.
             </p>
         </section>
-        <br>
 
         {{-- Basisschool toernooien --}}
         <section class="tournament-section">
             <h2>Basisschool - Voetbaltoernooien</h2>
-            <p>
+            <p class="section-description">
                 Voor de basisschool zijn er aparte toernooien per leerjaar. Teams schrijven zich
                 in per school; bij meerdere teams van dezelfde school mag de school zelf de namen
-                bepalen (bijvoorbeeld “De Sprong 1” en “De Sprong 2”). :contentReference[oaicite:1]{index=1}
+                bepalen (bijvoorbeeld "De Sprong 1" en "De Sprong 2").
             </p>
-            <br>
 
             <div class="tournament-table-wrapper">
                 <table class="tournament-table">
@@ -56,25 +54,22 @@
                     </tbody>
                 </table>
             </div>
-            <br>
 
-            <p class="tournament-note">
-                In de poulefase worden 3 punten gegeven voor een overwinning. Bij een gelijkspel
+            <div class="tournament-note">
+                <strong>Let op:</strong> In de poulefase worden 3 punten gegeven voor een overwinning. Bij een gelijkspel
                 in de poule telt het totale aantal punten; in de finaleronde wordt een gelijkspel
-                beslist met strafschoppen. :contentReference[oaicite:2]{index=2}
-            </p>
+                beslist met strafschoppen.
+            </div>
         </section>
-        <br>
 
         {{-- Middelbare school toernooien --}}
         <section class="tournament-section">
             <h2>Middelbare school - Voetbaltoernooien</h2>
-            <p>
+            <p class="section-description">
                 Voor middelbare scholen zijn er aparte toernooien voor jongens en meisjes.
                 Ook hier schrijft iedere school zelf haar teams in. Er is geen maximum aantal
-                teams per school. :contentReference[oaicite:3]{index=3}
+                teams per school.
             </p>
-            <br>
 
             <div class="tournament-table-wrapper">
                 <table class="tournament-table">
@@ -103,21 +98,19 @@
                 </table>
             </div>
         </section>
-        <br>
 
         {{-- Lijnbal --}}
         <section class="tournament-section">
             <h2>Lijnbaltoernooien</h2>
-            <p>
+            <p class="section-description">
                 Naast voetbal is er ook een apart lijnbaltoernooi. Het lijnbaltoernooi wordt
                 gespeeld op 4 velden. Lijnbalwedstrijden duren 10 minuten.
             </p>
         </section>
-        <br>
 
         {{-- Toernooi-opzet & schema --}}
         <section class="tournament-section">
-            <h2>Toernooi-opzet</h2>
+            <h2>Toernooi-opzet & Planning</h2>
             <ul class="tournament-list">
                 <li>Wedstrijden worden in poules gespeeld, gevolgd door een knock-outfase.</li>
                 <li>Na de poulefase wordt automatisch een knock-outschema gegenereerd.</li>
@@ -126,7 +119,6 @@
                 <li>Wedstrijden en uitslagen zijn op de website terug te zien.</li>
             </ul>
         </section>
-        <br>
 
         {{-- Inschrijven & praktische info --}}
         <section class="tournament-section">
@@ -136,30 +128,27 @@
                     <h3>Inschrijfperiode</h3>
                     <p>
                         Scholen schrijven zich meestal in rond december. Het Paastoernooi
-                        vindt plaats aan het begin van april. Wedstrijdschema’s worden ongeveer
-                        3-4 weken van tevoren ingepland. :contentReference[oaicite:5]{index=5}
+                        vindt plaats aan het begin van april. Wedstrijdschema's worden ongeveer
+                        3-4 weken van tevoren ingepland.
                     </p>
                 </div>
-                <br>
 
                 <div class="tournament-card">
                     <h3>Wijzigen & uitschrijven</h3>
                     <p>
                         Via het schoolaccount kunnen teams worden aangemeld, aangepast of
                         uitgeschreven (bijvoorbeeld bij ziekte). Ook kan de organisatie teams
-                        of wedstrijden verwijderen indien nodig. :contentReference[oaicite:6]{index=6}
+                        of wedstrijden verwijderen indien nodig. 
                     </p>
                 </div>
-                <br>
 
                 <div class="tournament-card">
                     <h3>Kosten</h3>
                     <p>
                         Deelnamekosten bedragen <strong>€ 35,- per team</strong>. Betalingsinformatie
-                        wordt gedeeld via de organisatie na inschrijving. :contentReference[oaicite:7]{index=7}
+                        wordt gedeeld via de organisatie na inschrijving.
                     </p>
                 </div>
-                <br>
 
                 <div class="tournament-card">
                     <h3>Archief</h3>
