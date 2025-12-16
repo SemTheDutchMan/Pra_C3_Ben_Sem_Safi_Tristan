@@ -35,9 +35,12 @@
         </div>
 
         <div class="mt-8 space-x-4">
-            <a href="{{ route('school.edit', $school->id) }}"
-                class="inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Edit</a>
-            <a href="{{ route('school.index') }}"
+            <form action="{{ route('school.destroy', $school->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="inline-block px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Delete</button>
+            </form>
+            <a href="{{ route('dashboard') }}"
                 class="inline-block px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Back</a>
         </div>
     </div>

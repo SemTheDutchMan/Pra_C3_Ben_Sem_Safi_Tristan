@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\School;
 use Illuminate\Http\Request;
+use App\Helpers\Mailto;
+use Illuminate\Support\Facades\Mail;
 
 class SchoolController extends Controller
 {
@@ -41,6 +43,8 @@ class SchoolController extends Controller
         ]);
 
         School::create($validated);
+        
+        Mailto::send($validated['email'], "Nieuwe inschrijving: {$validated['name']}", "Er is een nieuwe inschrijving: {$validated['name']}.");
 
         return redirect()->route('school.index')->with('success', 'School registered successfully.');
     }
@@ -85,6 +89,6 @@ class SchoolController extends Controller
     public function destroy(string $id)
     {
         School::findOrFail($id)->delete();
-        return redirect()->route('school.index')->with('success', 'School deleted successfully.');
+        return redirect()->route('dashboard')->with('success', 'School deleted successfully.');
     }
 }
