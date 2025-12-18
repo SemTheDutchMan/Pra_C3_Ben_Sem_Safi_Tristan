@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TournamentsController;
 
 Route::get('/', function () {
     return view('homepage');
@@ -31,4 +32,14 @@ Route::patch('/account/{id}', [ProfileController::class, 'updateUser'])->middlew
 Route::resource('/school', SchoolController::class);
 Route::resource('/contact', ContactController::class);
 
+Route::delete('/tournaments/{id}', [TournamentsController::class, 'destroy']);
+Route::resource('fixtures', FixtureController::class);
+Route::resource('team', TeamController::class);
+Route::resource('users', UserController::class);
+Route::resource('tournaments', TournamentsController::class);
+Route::resource('tournaments', TournamentsController::class)->only(['index', 'show']);
+Route::get('tournaments/{tournament}/standings', [TournamentsController::class, 'standings'])->name('tournaments.standings');
+
 require __DIR__ . '/auth.php';
+
+Route::get('/tournaments', [TournamentsController::class, 'index'])->name('tournaments.index');
