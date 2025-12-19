@@ -1,9 +1,23 @@
 <x-base-layout>
+
     <section class="signupform-wrapper">
+        <div class="top-buttons">
+            <a class="btn-goback" href="/admin">Ga Terug</a>
+        </div>
         <h2 class="ins">Nieuw Toernooi Aanmaken</h2>
 
 
 
+
+        @if($errors->any())
+        <div class="alert alert-danger" style="margin-bottom: 1rem;">
+            <ul style="margin-left: 1rem;">
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
         <form method="POST" action="{{ route('tournaments.store') }}" class="signupform">
             @csrf
@@ -11,29 +25,29 @@
 
             <div class="signupform-group">
                 <label for="name">Toernooinaam:</label>
-                <input type="text" name="name" id="name" class="signupform-control" required>
+                <input type="text" name="name" id="name" class="signupform-control" value="{{ old('name') }}" required>
             </div>
             <div class="signupform-group">
                 <label for="date">Datum Toernooi:</label>
-                <input type="date" name="date" id="date" class="signupform-control" required>
+                <input type="date" name="date" id="date" class="signupform-control" value="{{ old('date') }}" required>
             </div>
 
             <div class="signupform-group">
                 <label for="startTime">Startijd:</label>
-                <input type="text" id="startTime" name="startTime" class="signupform-control" required>
+                <input type="text" id="startTime" name="startTime" class="signupform-control" value="{{ old('startTime') }}" required>
             </div>
 
             <div class="signupform-group">
                 <label for="teamsPerPool">Aantal teams per poule:</label>
-                <input type="number" name="teamsPerPool" id="teamsPerPool" class="signupform-control" min="2" required>
+                <input type="number" name="teamsPerPool" id="teamsPerPool" class="signupform-control" value="{{ old('teamsPerPool') }}" min="2" required>
             </div>
 
             <div class="signupform-group">
                 <label for="school_level">Schoolniveau:</label>
                 <select name="school_level" id="school_level" class="signupform-control" required>
                     <option value="">-- Kies niveau --</option>
-                    <option value="basisschool">Basisschool</option>
-                    <option value="middelbare">Middelbare school</option>
+                    <option value="basisschool" {{ old('school_level')==='basisschool' ? 'selected' : '' }}>Basisschool</option>
+                    <option value="middelbare" {{ old('school_level')==='middelbare' ? 'selected' : '' }}>Middelbare school</option>
                 </select>
             </div>
 
@@ -42,8 +56,8 @@
                 <label for="sport">Soort sport:</label>
                 <select name="sport" id="sport" class="signupform-control" required>
                     <option value="">-- Kies sport --</option>
-                    <option value="voetbal">Voetbal</option>
-                    <option value="lijnbal">Lijnbal</option>
+                    <option value="voetbal" {{ old('sport')==='voetbal' ? 'selected' : '' }}>Voetbal</option>
+                    <option value="lijnbal" {{ old('sport')==='lijnbal' ? 'selected' : '' }}>Lijnbal</option>
                 </select>
             </div>
 
@@ -53,6 +67,7 @@
 
                 <select name="group" id="group" class="signupform-control" required>
                     <option value="">-- Kies eerst schoolniveau --</option>
+                    <option value="groep7/8" {{ old('group')==='groep7/8' ? 'selected' : '' }}>groep 7/8</option>
                 </select>
             </div>
 
@@ -79,23 +94,38 @@
 
         const options = {
             basisschool: {
-                voetbal: [
-                    { value: "groep3/4", label: "Groep 3/4 (gemengd)" },
-                    { value: "groep5/6", label: "Groep 5/6 (gemengd)" },
-                    { value: "groep7/8", label: "Groep 7/8 (gemengd)" }
+                voetbal: [{
+                        value: "groep3/4",
+                        label: "Groep 3/4 (gemengd)"
+                    },
+                    {
+                        value: "groep5/6",
+                        label: "Groep 5/6 (gemengd)"
+                    },
+                    {
+                        value: "groep7/8",
+                        label: "Groep 7/8 (gemengd)"
+                    }
                 ],
-                lijnbal: [
-                    { value: "groep7/8", label: "Groep 7/8 Lijnbal Meiden" }
-                ]
+                lijnbal: [{
+                    value: "groep7/8",
+                    label: "Groep 7/8 Lijnbal Meiden"
+                }]
             },
             middelbare: {
-                voetbal: [
-                    { value: "klas1_jongens", label: "1e klas Jongens/Gemengd" },
-                    { value: "klas1_meiden", label: "1e klas Meiden" }
+                voetbal: [{
+                        value: "klas1_jongens",
+                        label: "1e klas Jongens/Gemengd"
+                    },
+                    {
+                        value: "klas1_meiden",
+                        label: "1e klas Meiden"
+                    }
                 ],
-                lijnbal: [
-                    { value: "klas1_meiden", label: "1e klas Lijnbal Meiden" }
-                ]
+                lijnbal: [{
+                    value: "klas1_meiden",
+                    label: "1e klas Lijnbal Meiden"
+                }]
             }
         };
 

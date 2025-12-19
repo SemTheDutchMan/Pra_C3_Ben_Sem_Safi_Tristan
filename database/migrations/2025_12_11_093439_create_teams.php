@@ -12,20 +12,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('teams', function (Blueprint $table) {
-    $table->id();
+            $table->id();
 
-    // koppeling met jouw schools tabel
-    $table->foreignId('school_id')->constrained('schools')->cascadeOnDelete();
+            $table->foreignId('school_id')->constrained('schools')->cascadeOnDelete();
+            $table->foreignId('tournament_id')->nullable();
 
-    // naam van het team, je kan bijv. groep 1, groep 2 etc.
-    $table->string('name');
+            $table->string('name');
+            $table->enum('sport', ['voetbal', 'lijnbal']);
+            $table->string('group');
+            $table->string('teamsort')->nullable();
+            $table->string('referee')->nullable();
 
-    // jouw sporten
-    $table->enum('sport', ['voetbal', 'lijmbal']);
+            $table->integer('pool')->nullable();
+            $table->integer('pool_id')->nullable();
+            $table->integer('poulePoints')->default(0);
 
-    $table->timestamps();
-});
-
+            $table->timestamps();
+        });
     }
 
     /**

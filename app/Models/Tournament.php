@@ -14,6 +14,8 @@ class Tournament extends Model
     protected $fillable = [
         'name',
         'date',
+        'sport',
+        'group',
         'start_time',
         'fields_amount',
         'game_length_minutes',
@@ -30,6 +32,4 @@ class Tournament extends Model
     {
         return $this->hasMany(Team::class, 'tournament_id');
     }
-
-
 }

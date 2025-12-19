@@ -1,7 +1,10 @@
 <x-base-layout>
     <main class="toernooi-detail-page">
-
-        <h1>{{ $tournament->name }}</h1>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <a href="{{ route('tournaments.index') }}" class="btn-goback">← Terug naar overzicht</a>
+            <h1 style="margin: 0;">{{ $tournament->name }}</h1>
+            <a href="{{ route('tournaments.standings', $tournament) }}" class="btn-details">Bekijk Stand</a>
+        </div>
 
         <div class="wn">
 
@@ -15,89 +18,86 @@
             <select id="pool-filter" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
                 <option value="">Alle Poules</option>
                 @php
-                    $pools = collect($fixtures)
-                        ->map(fn($f) => $f->team1->pool)
-                        ->filter()
-                        ->unique()
-                        ->sort(fn($a, $b) => $a <=> $b);
-                @endphp
-                @foreach ($pools as $pool)
+                $pools = collect($fixtures)
+                ->map(fn($f) => $f->team1->pool)
+                ->filter()
+                ->unique()
+                ->sort(fn($a, $b) => $a <=> $b);
+                    @endphp
+                    @foreach ($pools as $pool)
                     <option value="{{ $pool }}">Poule {{ $pool }}</option>
-                @endforeach
+                    @endforeach
             </select>
-            <a href="{{ route('tournaments.standings', $tournament) }}" class="btn-goback"
-                style="margin-left: 20px;">Stand</a>
-
         </div>
 
         @foreach ($fixtures as $fixture)
-            <!-- WRAPPER die tabel + knop bevat -->
-            <div class="fixture-wrapper" data-fixture-pool="{{ $fixture->team1->pool }}" style="margin-bottom: 20px;">
+        <!-- WRAPPER die tabel + knop bevat -->
+        <div class="fixture-wrapper" data-fixture-pool="{{ $fixture->team1->pool }}" style="margin-bottom: 20px;">
 
-                <table class="toernooi-tabel" style="margin-bottom: 10px;">
-                    <tbody>
-                        <tr>
-                            <th>Team 1:</th>
-                            <td>{{ $fixture->team1->name }}</td>
-                            <td>{{ $fixture->team_1_id }}</td>
-                        </tr>
-                        <tr>
-                            <th>Score:</th>
-                            <td>{{ $fixture->team_1_score }} - {{ $fixture->team_2_score }}</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>Team 2:</th>
-                            <td>{{ $fixture->team2->name }}</td>
-                            <td>{{ $fixture->team_2_id }}</td>
-                        </tr>
-                        <tr>
-                            <th>StartTijd</th>
-                            <td>{{ $fixture->start_time }}</td>
-                            <td>{{ $fixture->end_time }}</td>
-                        </tr>
-                        <tr>
-                            <th>Veld</th>
-                            <td>{{ $fixture->field }}</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>Poule</th>
-                            <td>{{ $fixture->team1->pool }}</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>Scheidsrechter</th>
-                            <td>{{ $fixture->scheidsrechter ? $fixture->scheidsrechter->name : 'Niet toegewezen' }}
-                            </td>
-                            <td></td>
-                    </tbody>
-                </table>
-                @auth
-                    @if (auth()->user()->is_admin)
-                        <div class="fixture-buttons">
-                            <a href="{{ route('fixtures.edit', $fixture->id) }}" class="btn-fixture edit">
-                                Aanpassen
-                            </a>
+            <table class="toernooi-tabel" style="margin-bottom: 10px;">
+                <tbody>
+                    <tr>
+                        <th>Team 1:</th>
+                        <td>{{ $fixture->team1->name }}</td>
+                        <td>{{ $fixture->team_1_id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Score:</th>
+                        <td>{{ $fixture->team_1_score }} - {{ $fixture->team_2_score }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Team 2:</th>
+                        <td>{{ $fixture->team2->name }}</td>
+                        <td>{{ $fixture->team_2_id }}</td>
+                    </tr>
+                    <tr>
+                        <th>StartTijd</th>
+                        <td>{{ $fixture->start_time }}</td>
+                        <td>{{ $fixture->end_time }}</td>
+                    </tr>
+                    <tr>
+                        <th>Veld</th>
+                        <td>{{ $fixture->field }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Poule</th>
+                        <td>{{ $fixture->team1->pool }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Scheidsrechter</th>
+                        <td>{{ $fixture->scheidsrechter ? $fixture->scheidsrechter->name : 'Niet toegewezen' }}
+                        </td>
+                        <td></td>
+                </tbody>
+            </table>
+            @auth
+            @if (auth()->user()->is_admin)
+            <div class="fixture-buttons">
+                <a href="{{ route('fixtures.edit', $fixture->id) }}" class="btn-fixture edit">
+                    Aanpassen
+                </a>
 
-                            <form method="POST" action="{{ route('fixtures.destroy', $fixture->id) }}"
-                                onsubmit="return confirm('Weet je zeker dat je dit wilt verwijderen?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-fixture delete">Verwijderen</button>
-                            </form>
-                        </div>
-                    @endif
-                @endauth
-
+                <form method="POST" action="{{ route('fixtures.destroy', $fixture->id) }}"
+                    onsubmit="return confirm('Weet je zeker dat je dit wilt verwijderen?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-fixture delete">Verwijderen</button>
+                </form>
             </div>
+            @endif
+            @endauth
+
+        </div>
         @endforeach
 
     </main>
 
     <script>
         //chatgpt
-        document.getElementById('pool-filter').addEventListener('change', function () {
+        document.getElementById('pool-filter').addEventListener('change', function() {
             const selectedPool = this.value;
             const fixtures = document.querySelectorAll('.fixture-wrapper');
 
