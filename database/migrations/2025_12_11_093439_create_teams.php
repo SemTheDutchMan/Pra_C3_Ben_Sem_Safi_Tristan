@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->string('name');
             $table->enum('sport', ['voetbal', 'lijnbal']);
-            $table->string('group');
+            $table->string('groep');
             $table->string('teamsort')->nullable();
             $table->string('referee')->nullable();
 

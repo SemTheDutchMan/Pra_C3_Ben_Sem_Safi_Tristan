@@ -33,7 +33,7 @@ class TournamentsController extends Controller
             'name' => 'required|string',
             'date' => 'required|date',
             'sport' => 'required|in:voetbal,lijnbal',
-            'group' => 'required|in:groep3/4,groep5/6,groep7/8,klas1_jongens,klas1_meiden',
+            'groep' => 'required|in:groep 3/4,groep 5/6,groep 7/8,klas1_jongens,klas1_meiden',
             'startTime' => 'required|date_format:H:i',
             'teamsPerPool' => 'required|integer|min:2',
         ]);
@@ -50,25 +50,26 @@ class TournamentsController extends Controller
 
         $gameSettings = [
             'voetbal' => [
-                'groep3/4' => ['fields' => 4, 'length' => 15, 'pause' => 5],
-                'groep5/6' => ['fields' => 8, 'length' => 15, 'pause' => 5],
-                'groep7/8' => ['fields' => 8, 'length' => 15, 'pause' => 5],
+                'groep 3/4' => ['fields' => 4, 'length' => 15, 'pause' => 5],
+                'groep 5/6' => ['fields' => 8, 'length' => 15, 'pause' => 5],
+                'groep 7/8' => ['fields' => 8, 'length' => 15, 'pause' => 5],
                 'klas1_meiden' => ['fields' => 4, 'length' => 15, 'pause' => 5],
                 'klas1_jongens' => ['fields' => 3, 'length' => 15, 'pause' => 5],
             ],
             'lijnbal' => [
-                'groep3/4' => ['fields' => 4, 'length' => 10, 'pause' => 2],
-                'groep5/6' => ['fields' => 4, 'length' => 10, 'pause' => 2],
-                'groep7/8' => ['fields' => 4, 'length' => 10, 'pause' => 2],
+                'groep 3/4' => ['fields' => 4, 'length' => 10, 'pause' => 2],
+                'groep 5/6' => ['fields' => 4, 'length' => 10, 'pause' => 2],
+                'groep 7/8' => ['fields' => 4, 'length' => 10, 'pause' => 2],
                 'klas1_meiden' => ['fields' => 4, 'length' => 12, 'pause' => 0],
                 'klas1_jongens' => ['fields' => 4, 'length' => 12, 'pause' => 0],
             ]
         ];
 
+
         // TEAMS OPHALEN 
         // Haal alle beschikbare teams op die nog geen toernooi hebben
         $teams = Team::where('sport', $data['sport'])
-            ->where('group', $data['group'])
+            ->where('groep', $data['groep'])
             ->whereNull('tournament_id')
             ->get()
             ->shuffle();
@@ -112,16 +113,21 @@ class TournamentsController extends Controller
                 $index++;
             }
         }
+        if (!isset($gameSettings[$data['sport']][$data['groep']])) {
+            return redirect()->back()->withErrors([
+                'groep' => 'Ongeldige combinatie van sport en groep.'
+            ])->withInput();
+        }
 
         //TOERNOOI MAKEN
-        $fields = $gameSettings[$data['sport']][$data['group']]['fields'];
+        $fields = $gameSettings[$data['sport']][$data['groep']]['fields'];
 
         $tournament = Tournament::create([
             'name' => $data['name'],
             'date' => $data['date'],
             'start_time' => $data['startTime'],
             'fields_amount' => $fields,
-            'game_length_minutes' => $gameSettings[$data['sport']][$data['group']]['length'],
+            'game_length_minutes' => $gameSettings[$data['sport']][$data['groep']]['length'],
             'amount_teams_pool' => $teamsPerPool,
             'archived' => false,
         ]);
@@ -157,8 +163,8 @@ class TournamentsController extends Controller
 
         //PLANNING TIJD + VELDEN
         $currentTime = Carbon::createFromFormat('H:i', $data['startTime']);
-        $gameLength = $gameSettings[$data['sport']][$data['group']]['length'];
-        $pause = $gameSettings[$data['sport']][$data['group']]['pause'];
+        $gameLength = $gameSettings[$data['sport']][$data['groep']]['length'];
+        $pause = $gameSettings[$data['sport']][$data['groep']]['pause'];
 
         $slotLength = $gameLength + $pause;
         $busyTeams = [];

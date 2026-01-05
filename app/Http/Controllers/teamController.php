@@ -71,7 +71,7 @@ class teamController extends Controller
                         'school_id' => $school->id,
                         'name' => $teamData['name'],
                         'sport' => $teamData['sport'],
-                        'group' => $teamData['group'],
+                        'groep' => $teamData['groep'],
                         'teamsort' => $teamData['teamsort'],
                         'referee' => null,
                         'pool_id' => null,

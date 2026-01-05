@@ -15,7 +15,7 @@ class Tournament extends Model
         'name',
         'date',
         'sport',
-        'group',
+        'groep',
         'start_time',
         'fields_amount',
         'game_length_minutes',

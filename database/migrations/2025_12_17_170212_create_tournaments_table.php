@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->date('date');
             $table->string('sport');
-            $table->string('group');
+            $table->string('groep');
             $table->integer('fields_amount');
             $table->integer('game_length_minutes');
             $table->integer('amount_teams_pool');

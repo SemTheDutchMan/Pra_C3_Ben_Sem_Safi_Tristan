@@ -63,11 +63,11 @@
 
 
             <div class="signupform-group">
-                <label for="group">Groep:</label>
+                <label for="groep">Groep:</label>
 
-                <select name="group" id="group" class="signupform-control" required>
+                <select name="groep" id="groep" class="signupform-control" required>
                     <option value="">-- Kies eerst schoolniveau --</option>
-                    <option value="groep7/8" {{ old('group')==='groep7/8' ? 'selected' : '' }}>groep 7/8</option>
+                    <option value="groep7/8" {{ old('groep')==='groep7/8' ? 'selected' : '' }}>groep 7/8</option>
                 </select>
             </div>
 
@@ -88,7 +88,7 @@
             time_24hr: true
         })
         //Chatgpt
-        const groupSelect = document.getElementById('group');
+        const groupSelect = document.getElementById('groep');
         const schoolLevelSelect = document.getElementById('school_level');
         const sportSelect = document.getElementById('sport');
 
