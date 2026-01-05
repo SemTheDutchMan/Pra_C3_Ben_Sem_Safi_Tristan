@@ -45,6 +45,9 @@ class SchoolController extends Controller
         School::create($validated);
         
         Mailto::send($validated['email'], "Nieuwe inschrijving: {$validated['name']}", "Er is een nieuwe inschrijving: {$validated['name']}.");
+        
+        $confirm_email = 'stichtingpaastoernooiboz@gmail.com';
+        Mailto::send($confirm_email, "Nieuwe inschrijving: {$validated['name']}", "Er is een nieuwe inschrijving: {$validated['name']}.");
 
         return redirect()->route('school.index')->with('success', 'School registered successfully.');
     }
