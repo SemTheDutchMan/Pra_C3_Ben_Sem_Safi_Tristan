@@ -74,7 +74,7 @@
                 </tbody>
             </table>
             @auth
-            @if (auth()->user()->is_admin)
+            @if (auth()->user()->isAdmin)
             <div class="fixture-buttons">
                 <a href="{{ route('fixtures.edit', $fixture->id) }}" class="btn-fixture edit">
                     Aanpassen

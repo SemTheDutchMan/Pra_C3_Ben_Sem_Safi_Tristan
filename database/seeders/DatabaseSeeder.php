@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\DemoDataSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,5 +24,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin123'),
             'isAdmin' => true,
         ]);
+
+        $this->call(DemoDataSeeder::class);
     }
 }

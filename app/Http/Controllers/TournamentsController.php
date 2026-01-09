@@ -33,10 +33,23 @@ class TournamentsController extends Controller
             'name' => 'required|string',
             'date' => 'required|date',
             'sport' => 'required|in:voetbal,lijnbal',
-            'groep' => 'required|in:groep 3/4,groep 5/6,groep 7/8,klas1_jongens,klas1_meiden',
+            // Accept both old (no-space) and new (with-space) values
+            'groep' => 'required|in:groep 3/4,groep 5/6,groep 7/8,groep3/4,groep5/6,groep7/8,klas1_jongens,klas1_meiden',
             'startTime' => 'required|date_format:H:i',
             'teamsPerPool' => 'required|integer|min:2',
         ]);
+
+        // Normalize groep to the canonical form with a space so settings match
+        $groepInput = $data['groep'];
+        $groepCanonical = match ($groepInput) {
+            'groep3/4' => 'groep 3/4',
+            'groep5/6' => 'groep 5/6',
+            'groep7/8' => 'groep 7/8',
+            default => $groepInput,
+        };
+
+        // Use both canonical and compact values when querying teams so older data still matches
+        $groepLookup = [$groepCanonical, str_replace(' ', '', $groepCanonical)];
 
         // Controleer of de toernooinaam al bestaat
         if (Tournament::where('name', $data['name'])->exists()) {
@@ -69,7 +82,7 @@ class TournamentsController extends Controller
         // TEAMS OPHALEN 
         // Haal alle beschikbare teams op die nog geen toernooi hebben
         $teams = Team::where('sport', $data['sport'])
-            ->where('groep', $data['groep'])
+            ->whereIn('groep', $groepLookup)
             ->whereNull('tournament_id')
             ->get()
             ->shuffle();
@@ -113,21 +126,23 @@ class TournamentsController extends Controller
                 $index++;
             }
         }
-        if (!isset($gameSettings[$data['sport']][$data['groep']])) {
+        if (!isset($gameSettings[$data['sport']][$groepCanonical])) {
             return redirect()->back()->withErrors([
                 'groep' => 'Ongeldige combinatie van sport en groep.'
             ])->withInput();
         }
 
         //TOERNOOI MAKEN
-        $fields = $gameSettings[$data['sport']][$data['groep']]['fields'];
+        $fields = $gameSettings[$data['sport']][$groepCanonical]['fields'];
 
         $tournament = Tournament::create([
             'name' => $data['name'],
             'date' => $data['date'],
+            'sport' => $data['sport'],
+            'groep' => $groepCanonical,
             'start_time' => $data['startTime'],
             'fields_amount' => $fields,
-            'game_length_minutes' => $gameSettings[$data['sport']][$data['groep']]['length'],
+            'game_length_minutes' => $gameSettings[$data['sport']][$groepCanonical]['length'],
             'amount_teams_pool' => $teamsPerPool,
             'archived' => false,
         ]);
@@ -175,7 +190,7 @@ class TournamentsController extends Controller
             $fieldNumber = 1;
 
             // Probeer maximaal het aantal beschikbare velden te vullen
-            for ($i = 0; $i < count($fixturesToCreate) && $fieldNumber <= $fields; ) {
+            for ($i = 0; $i < count($fixturesToCreate) && $fieldNumber <= $fields;) {
                 $fixture = $fixturesToCreate[$i];
                 $team1 = $fixture['team1'];
                 $team2 = $fixture['team2'];
@@ -247,10 +262,9 @@ class TournamentsController extends Controller
                 // Ga door naar het volgende tijdslot
                 $currentTime->addMinutes($slotLength);
             }
-
         }
 
-        return redirect()->route('admin.index')
+        return redirect()->route('tournaments.index')
             ->with('success', 'Toernooi succesvol aangemaakt!');
     }
 
@@ -266,10 +280,7 @@ class TournamentsController extends Controller
         $fixtures = $tournament->fixtures;
 
 
-        return view('tournaments.show', compact('tournament', 'fixtures'));
-        ;
-
-
+        return view('tournaments.show', compact('tournament', 'fixtures'));;
     }
 
 
@@ -286,9 +297,24 @@ class TournamentsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTournamentRequest $request, Tournament $tournament)
+    public function update(Request $request, Tournament $tournament)
     {
-        //
+        $data = $request->validate([
+            'name' => 'sometimes|required|string',
+            'date' => 'sometimes|required|date',
+            'sport' => 'sometimes|required|in:voetbal,lijnbal',
+            'groep' => 'sometimes|required|in:groep 3/4,groep 5/6,groep 7/8,klas1_jongens,klas1_meiden',
+            'start_time' => 'sometimes|required|date_format:H:i',
+            'fields_amount' => 'sometimes|required|integer|min:1',
+            'game_length_minutes' => 'sometimes|required|integer|min:1',
+            'amount_teams_pool' => 'sometimes|required|integer|min:2',
+            'archived' => 'sometimes|boolean',
+        ]);
+
+        $tournament->update($data);
+
+        return redirect()->route('tournaments.show', $tournament)
+            ->with('success', 'Toernooi bijgewerkt.');
     }
 
     /**
@@ -330,7 +356,7 @@ class TournamentsController extends Controller
             ->orderByDesc('poulePoints')
             ->get();
 
-        $stand = $teams->groupBy('pool')->sortkeys();
+        $stand = $teams->groupBy('pool')->sortKeys();
 
         return view('tournaments.standings', compact('tournament', 'teams', 'stand'));
     }
