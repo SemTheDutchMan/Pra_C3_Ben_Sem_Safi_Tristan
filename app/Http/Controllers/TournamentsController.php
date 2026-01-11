@@ -20,6 +20,26 @@ class TournamentsController extends Controller
         return view('tournaments.index', compact('tournaments'));
     }
 
+    public function publicIndex()
+    {
+        $tournaments = Tournament::where('archived', false)
+            ->orderBy('date')
+            ->orderBy('start_time')
+            ->get();
+
+        return view('tournaments.public', compact('tournaments'));
+    }
+
+    public function archive()
+    {
+        $tournaments = Tournament::where('archived', true)
+            ->orderByDesc('date')
+            ->orderBy('start_time')
+            ->get();
+
+        return view('tournaments.archive', compact('tournaments'));
+    }
+
     public function create()
     {
         $all = $this->getAllData();

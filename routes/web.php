@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('homepage');
 })->name('homepage');
 
+Route::get('/tournaments/public', [TournamentsController::class, 'publicIndex'])->name('tournaments.public');
+Route::get('/tournaments/archive', [TournamentsController::class, 'archive'])->name('tournaments.archive');
+
 
 Route::view('/admin', 'admin')->name('admin');
 Route::view('/rules', 'rules')->name('rules');
