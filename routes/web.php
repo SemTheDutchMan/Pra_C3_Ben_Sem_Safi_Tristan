@@ -41,6 +41,7 @@ Route::resource('/contact', ContactController::class);
 Route::resource('fixtures', FixtureController::class);
 Route::resource('team', TeamController::class);
 Route::resource('users', UserController::class);
+Route::patch('tournaments/{tournament}/archive', [TournamentsController::class, 'toggleArchive'])->name('tournaments.toggle-archive');
 Route::resource('tournaments', TournamentsController::class);
 Route::get('tournaments/{tournament}/standings', [TournamentsController::class, 'standings'])->name('tournaments.standings');
 

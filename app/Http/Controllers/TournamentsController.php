@@ -40,6 +40,15 @@ class TournamentsController extends Controller
         return view('tournaments.archive', compact('tournaments'));
     }
 
+    public function toggleArchive(Tournament $tournament)
+    {
+        $tournament->archived = !$tournament->archived;
+        $tournament->save();
+
+        return redirect()->route('tournaments.index')
+            ->with('success', $tournament->archived ? 'Toernooi gearchiveerd.' : 'Toernooi uit archief gehaald.');
+    }
+
     public function create()
     {
         $all = $this->getAllData();
