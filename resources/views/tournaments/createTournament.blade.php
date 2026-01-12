@@ -6,8 +6,7 @@
         </div>
         <h2 class="ins">Nieuw Toernooi Aanmaken</h2>
 
-
-
+    if(auth()->user() && auth()->user()->isAdmin)
 
         @if($errors->any())
         <div class="alert alert-danger" style="margin-bottom: 1rem;">
@@ -169,4 +168,8 @@
             }
         })();
     </script>
+
+    else
+    <p>Je hebt geen toestemming om een toernooi aan te maken.</p>
+@endif
 </x-base-layout>
