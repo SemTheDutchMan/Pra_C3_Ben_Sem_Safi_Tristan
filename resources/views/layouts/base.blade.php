@@ -62,12 +62,7 @@
                 </div>
             </div>
             <div>
-                <h4 style="margin: 0 0 6px; font-size: 15px;">Volg ons</h4>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    <a href="#" aria-label="Facebook"><img src="{{ asset('img/media_icons/facebook.png') }}" alt="Facebook" style="height: 26px; width: 26px;"></a>
-                    <a href="#" aria-label="Instagram"><img src="{{ asset('img/media_icons/instagram.png') }}" alt="Instagram" style="height: 26px; width: 26px;"></a>
-                    <a href="#" aria-label="Twitter"><img src="{{ asset('img/media_icons/twitter.png') }}" alt="Twitter" style="height: 26px; width: 26px;"></a>
-                </div>
+                
             </div>
         </div>
         <div style="max-width: 1200px; margin: 18px auto 0; color: #fecdd3; font-size: 13px;">© {{ date('Y') }} Stichting Paastoernooien. Alle rechten voorbehouden.</div>
