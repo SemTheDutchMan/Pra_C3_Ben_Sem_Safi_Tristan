@@ -862,3 +862,215 @@ a.nav-button {
 }
 
 
+/* =========================
+   GLOBAL RESET
+   ========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+    --main-color: plum;
+    --secondary-color: white;
+    --hover-color: #dda0dd;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+.homepage_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.homepage_header img {
+    width: 50px;
+}
+
+.homepage_header nav a {
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.homepage_header nav a:hover {
+    color: var(--hover-color);
+}
+
+/* =========================
+   WRAPPER
+   ========================= */
+.wrapper {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 30px;
+    font-weight: bold;
+}
+
+/* =========================
+   CARDS / SECTIONS
+   ========================= */
+.tournament-section,
+.tournament-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   GRID
+   ========================= */
+.tournament-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+button,
+.btn-details,
+.signupform-btn {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover,
+.btn-details:hover,
+.signupform-btn:hover {
+    background-color: var(--hover-color);
+}
+
+/* =========================
+   FORMS
+   ========================= */
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--main-color);
+}
+
+/* =========================
+   TABLES
+   ========================= */
+.tournament-table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 15px;
+    border: 1px solid #eee;
+    text-align: center;
+}
+
+th {
+    background-color: var(--main-color);
+    color: white;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+footer {
+    background-color: var(--main-color);
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 20px;
+}
+
+.partial_footer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ======================================================
+   RESPONSIVE – TABLET (600px – 1024px)
+   ====================================================== */
+@media (min-width: 600px) and (max-width: 1024px) {
+
+    .homepage_header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .tournament-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    footer {
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    .partial_footer {
+        width: 50%;
+        align-items: center;
+    }
+}
+
+/* ======================================================
+   RESPONSIVE – MOBILE (<768px)
+   ====================================================== */
+@media (max-width: 768px) {
+
+    .homepage_header nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .tournament-grid {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .partial_footer {
+        width: 100%;
+        align-items: center;
+    }
+
+    button,
+    .btn-details {
+        width: 100%;
+    }
+}
